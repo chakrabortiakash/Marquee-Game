@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/My Practice File/inner.html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/My Practice File/inner.html"
+        },
+        {
+            "type": "chrome",
+            "name": "http://127.0.0.1:3000/My Practice File/Accordion..html",
+            "request": "launch",
+            "url": "http://127.0.0.1:3000/My Practice File/Accordion..html"
+        }
+    ]
+}
