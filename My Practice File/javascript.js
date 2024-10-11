@@ -1,30 +1,35 @@
-var dialLines = document.getElementsByClassName('diallines');
-var clockEl = document.getElementsByClassName('clock')[0];
+const inputBox = document.getElementById('input-box');
+const listContainer = document.getElementById('list-container');
+function addTask(){
+   if(inputBox.value === ''){
+    alert('you must write somting');
+   } else {
+    let li = document.createElement("li");
+    li.innerHTML = inputBox.value;
+    listContainer.appendChild(li);
+    let span = document.createElement("span");
+    span.innerHTML= "\u00d7"; //cross icon code
+    li.appendChild(span);
+   }
+   inputBox.value = "";
+   saveData();
+}
+listContainer.addEventListener("click", function(e){
+   if(e.target.tagName === "LI"){
+      e.target.classList.toggle("checked");
+      saveData();
+   }
+   else if(e.target.name === "SPAN"){
+      e.target.parentElement.remove();
+      saveData();
+   }
+}, false);
 
-for (var i = 1; i < 60; i++) {
-  clockEl.innerHTML += "<div class='diallines'></div>";
-  dialLines[i].style.transform = "rotate(" + 6 * i + "deg)";
+function saveData(){
+   localStorage.setItem("data", listContainer.innerHTML);
 }
 
-function clock() {
-  var weekday = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      d = new Date(),
-      h = d.getHours(),
-      m = d.getMinutes(),
-      s = d.getSeconds(),
-      date = d.getDate(),
-      month = d.getMonth() + 1,
-      year = d.getFullYear(),
-           
-      hDeg = h * 30 + m * (360/720),
-      mDeg = m * 6 + s * (360/3600),
-      sDeg = s * 6,
-    }
+function showTask(){
+   listContainer.innerHTML = localStorage.getItem("data");
+}
+saveData();
